@@ -1,6 +1,6 @@
 const http = require('http');
 const PORT = 80;
-const MESSAGE = '🚀 Hello from Nova demo on AWS!';
+const MESSAGE = 'Hello from Amazon Nova demo on AWS!';
 
 http.createServer((req, res) => {
   res.writeHead(200);
