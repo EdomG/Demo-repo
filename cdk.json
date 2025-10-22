@@ -1,0 +1,11 @@
+{
+  "app": "python app.py",
+  "context": {
+    "MODEL_ID": "anthropic.claude-3",
+    "KB_ID": "4E0U6JBGZ",
+    "BEDROCK_AGENT_ARN": "arn:aws:bedrock:us-east-1:339712780249:agent/M84G5HC9IT",
+    "GITHUB_REPO": "Demo-repo",
+    "GITHUB_OWNER": "EdomG",
+    "NOTIFICATION_EMAILS": ["adomgbrhane@gmail.com"]
+  }
+}
