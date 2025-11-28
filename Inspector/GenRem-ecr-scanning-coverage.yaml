@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Remediation for ECR Image Scanning Coverage'
+Resources:
+  ECRScanningConfiguration:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Ref RepositoryName
+      ImageScanningConfiguration:
+        ScanOnPush: true
+      ImageTagMutability: IMMUTABLE
+
+Parameters:
+  RepositoryName:
+    Type: String
+    Description: Name of the ECR repository to configure scanning for
+    Default: lunch-and-learn-repo
