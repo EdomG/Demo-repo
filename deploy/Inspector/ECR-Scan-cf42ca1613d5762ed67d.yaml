@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'ECR Image Scanning Remediation - cf42ca1613d5762ed67d'
+Parameters:
+  RepositoryName:
+    Type: String
+    Default: 'your-ecr-repo'
+Resources:
+  ECRScanning:
+    Type: AWS::ECR::RepositoryScanningConfiguration
+    Properties:
+      RepositoryName: !Ref RepositoryName
+      ScanningConfiguration:
+        scanOnPush: true
+        scanFrequency: CONTINUOUS_SCAN
