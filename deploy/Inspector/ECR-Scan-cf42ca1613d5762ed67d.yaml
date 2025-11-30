@@ -6,4 +6,3 @@ Resources:
       RepositoryName: "lunch-and-learn-repo"
       ImageScanningConfiguration:
         ScanOnPush: true
-        
