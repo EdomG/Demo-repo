@@ -1,14 +1,18 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'ECR Image Scanning Remediation - cf42ca1613d5762ed67d'
-Parameters:
-  RepositoryName:
-    Type: String
-    Default: 'your-ecr-repo'
+Description: 'CloudFormation template to create an ECR repository with scan on push enabled'
+
 Resources:
-  ECRScanning:
-    Type: AWS::ECR::RepositoryScanningConfiguration
+  ECRRepository:
+    Type: 'AWS::ECR::Repository'
     Properties:
-      RepositoryName: !Ref RepositoryName
-      ScanningConfiguration:
-        scanOnPush: true
-        scanFrequency: CONTINUOUS_SCAN
+      RepositoryName: !Sub '${AWS::StackName}-repository'
+      ImageScanningConfiguration:
+        ScanOnPush: true
+      ImageTagMutability: MUTABLE
+      EncryptionConfiguration:
+        EncryptionType: AES256
+
+Outputs:
+  RepositoryURI:
+    Description: The URI of the created ECR Repository
+    Value: !GetAtt ECRRepository.RepositoryUri
