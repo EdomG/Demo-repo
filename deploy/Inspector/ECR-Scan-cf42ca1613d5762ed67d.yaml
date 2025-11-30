@@ -1,11 +1,16 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'CloudFormation template to create an ECR repository with scan on push enabled'
+Description: 'ECR repository with scan on push enabled'
+
+Parameters:
+  RepositoryName:
+    Type: String
+    Default: "lunch-and-learn-repo"
 
 Resources:
   ECRRepository:
     Type: 'AWS::ECR::Repository'
     Properties:
-      RepositoryName: !Sub '${AWS::StackName}-repository'
+      RepositoryName: !Ref RepositoryName
       ImageScanningConfiguration:
         ScanOnPush: true
       ImageTagMutability: MUTABLE
@@ -14,5 +19,4 @@ Resources:
 
 Outputs:
   RepositoryURI:
-    Description: The URI of the created ECR Repository
     Value: !GetAtt ECRRepository.RepositoryUri
