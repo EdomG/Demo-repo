@@ -1,0 +1,6 @@
+{
+  "RepositoryName": {
+    "Type": "String",
+    "Default": "your-ecr-repo"
+  }
+}
