@@ -1,20 +1,25 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'ECR ScanOnPush remediation'
+Description: 'Enable ECR ScanOnPush via API'
 
 Resources:
-  EnableECRScan:
-    Type: AWS::SSM::Document
+  EnableScanOnPush:
+    Type: 'AWS::SSM::Document'
     Properties:
-      DocumentType: Automation
+      DocumentType: 'Automation'
       Content:
         schemaVersion: '0.3'
         description: 'Enable ECR ScanOnPush'
+        assumeRole: '{{AutomationAssumeRole}}'
         mainSteps:
-        - name: EnableScanOnPush
-          action: aws:executeAwsApi
+        - name: EnableScanning
+          action: 'aws:executeAwsApi'
           inputs:
             Service: ecr
             Api: PutImageScanningConfiguration
-            RepositoryName: lunch-and-learn-repo
+            RepositoryName: 'lunch-and-learn-repo'
             ImageScanningConfiguration:
               scanOnPush: true
+          outputs:
+          - Name: ScanningConfig
+            Selector: '.'
+            Extract: true
