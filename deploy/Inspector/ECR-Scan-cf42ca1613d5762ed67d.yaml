@@ -1,11 +1,20 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'Enable ScanOnPush on existing ECR repo'
+Description: 'ECR ScanOnPush remediation'
 
 Resources:
-  ECRRepository:
-    Type: 'AWS::ECR::Repository'
+  EnableECRScan:
+    Type: AWS::SSM::Document
     Properties:
-      RepositoryName: "lunch-and-learn-repo"  # EXISTING REPO
-      ImageScanningConfiguration:
-        ScanOnPush: true  # ONLY THIS CHANGES
-      ImageTagMutability: MUTABLE
+      DocumentType: Automation
+      Content:
+        schemaVersion: '0.3'
+        description: 'Enable ECR ScanOnPush'
+        mainSteps:
+        - name: EnableScanOnPush
+          action: aws:executeAwsApi
+          inputs:
+            Service: ecr
+            Api: PutImageScanningConfiguration
+            RepositoryName: lunch-and-learn-repo
+            ImageScanningConfiguration:
+              scanOnPush: true
