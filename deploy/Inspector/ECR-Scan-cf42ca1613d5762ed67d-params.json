@@ -1,6 +1,6 @@
-{
-  "RepositoryName": {
-    "Type": "String",
-    "Default": "your-ecr-repo"
+[
+  {
+    "ParameterKey": "RepositoryName",
+    "ParameterValue": "lunch-and-learn-repo"
   }
-}
+
