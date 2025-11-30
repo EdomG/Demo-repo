@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'Enable ECR ScanOnPush via API'
+Description: 'Enable ECR ScanOnPush via SSM Automation'
 
 Resources:
   EnableScanOnPush:
@@ -19,7 +19,3 @@ Resources:
             RepositoryName: 'lunch-and-learn-repo'
             ImageScanningConfiguration:
               scanOnPush: true
-          outputs:
-          - Name: ScanningConfig
-            Selector: '.'
-            Extract: true
