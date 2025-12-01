@@ -1,0 +1,5 @@
+{
+  "FindingId": "S3 bucket policy changes",
+  "Service": "cloudtrail",
+  "ControlId": "CloudTrail_configuration_changes"
+}
