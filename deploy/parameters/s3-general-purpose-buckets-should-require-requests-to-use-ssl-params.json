@@ -1,0 +1,6 @@
+[
+  {
+    "ParameterKey": "LogGroupName",
+    "ParameterValue": "/aws/cloudtrail"
+  }
+]
