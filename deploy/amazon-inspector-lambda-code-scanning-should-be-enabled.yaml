@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Remediate Amazon Inspector Lambda code scanning should be en'
+Parameters:
+  LogGroupName:
+    Type: String
+    Default: '/aws/cloudtrail'
+Resources:
+  RemediationDoc:
+    Type: 'AWS::SSM::Document'
+    Properties:
+      DocumentType: 'Automation'
+      Content:
+        schemaVersion: '0.3'
+        description: 'Fix Amazon Inspector Lambda code scanning should be en'
+        mainSteps:
+        - name: 'CreateMetricFilter'
+          action: 'aws:executeAwsApi'
+          inputs:
+            Service: cloudwatchlogs
+            Api: PutMetricFilter
+            logGroupName: !Ref LogGroupName
+            filterName: 'amazon-inspector-lambda-code-scanning-should-be-enabled'
+            filterPattern: '{$.eventSource == "s3.amazonaws.com"}'
+            metricTransformations:
+            - metricName: 'amazon-inspector-lambda-code-scanning-should-be-enabled'
+              metricNamespace: 'SecurityHubRemediation'
+              metricValue: '1'
+              metricType: 'Count'
