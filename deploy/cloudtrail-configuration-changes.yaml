@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Remediate CloudTrail configuration changes'
+Parameters:
+  LogGroupName:
+    Type: String
+    Default: '/aws/cloudtrail'
+Resources:
+  RemediationDoc:
+    Type: 'AWS::SSM::Document'
+    Properties:
+      DocumentType: 'Automation'
+      Content:
+        schemaVersion: '0.3'
+        description: 'Fix CloudTrail configuration changes'
+        mainSteps:
+        - name: 'CreateMetricFilter'
+          action: 'aws:executeAwsApi'
+          inputs:
+            Service: cloudwatchlogs
+            Api: PutMetricFilter
+            logGroupName: !Ref LogGroupName
+            filterName: 'cloudtrail-configuration-changes'
+            filterPattern: '{$.eventSource == "s3.amazonaws.com"}'
+            metricTransformations:
+            - metricName: 'cloudtrail-configuration-changes'
+              metricNamespace: 'SecurityHubRemediation'
+              metricValue: '1'
+              metricType: 'Count'
