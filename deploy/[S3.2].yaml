@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'S3 bucket with Lifecycle configuration'
+
+Resources:
+  TargetBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: target-bucket
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExampleLifecycleRule
+            Status: Enabled
+            ExpirationInDays: 365
+            Transitions:
+              - StorageClass: GLACIER
+                TransitionInDays: 30
+
+Outputs:
+  BucketName:
+    Description: Name of the S3 bucket
+    Value: !Ref TargetBucket
