@@ -4,18 +4,18 @@
   "parameters": {
     "BucketName": {
       "type": "String",
-      "description": "Name of the S3 bucket to enable server access logging",
+      "description": "Name of the S3 bucket to remediate",
       "default": ""
     },
-    "TargetBucket": {
+    "LogBucketName": {
       "type": "String",
-      "description": "Name of the S3 bucket to store server access logs",
+      "description": "Name of the S3 bucket to store access logs",
       "default": ""
     },
-    "TargetPrefix": {
+    "LogFilePrefix": {
       "type": "String",
       "description": "Prefix for the log files",
-      "default": "ServerAccessLogs/"
+      "default": "access-logs/"
     }
   },
   "mainSteps": [
@@ -28,8 +28,8 @@
         "BucketName": "{{BucketName}}",
         "BucketLoggingStatus": {
           "LoggingEnabled": {
-            "TargetBucket": "{{TargetBucket}}",
-            "TargetPrefix": "{{TargetPrefix}}"
+            "TargetBucket": "{{LogBucketName}}",
+            "TargetPrefix": "{{LogFilePrefix}}"
           }
         }
       }
