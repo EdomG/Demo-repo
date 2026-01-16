@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "2.2",
+  "description": "Auto-remediation for CloudFormation-stacks-should-have-termination-prot",
+  "parameters": {
+    "StackName": {
+      "type": "String",
+      "description": "Name of the CloudFormation stack to remediate",
+      "default": ""
+    }
+  },
+  "mainSteps": [
+    {
+      "name": "enableTerminationProtection",
+      "action": "aws:executeAwsApi",
+      "inputs": {
+        "Service": "cloudformation",
+        "Api": "UpdateTerminationProtection",
+        "StackName": "{{StackName}}",
+        "EnableTerminationProtection": true
+      }
+    }
+  ]
+}
