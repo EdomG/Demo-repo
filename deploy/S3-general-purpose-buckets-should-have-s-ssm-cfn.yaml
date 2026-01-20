@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Fallback SSM Document for S3 general purpose buckets should have server access logging enabled'
+
+Resources:
+  RemediationDocument:
+    Type: 'AWS::SSM::Document'
+    Properties:
+      Content:
+        schemaVersion: '2.2'
+        description: 'Template for S3-general-purpose-buckets-should-have-s'
+        parameters: {}
+        mainSteps:
+          - name: ready
+            action: 'aws:executeScript'
+            inputs:
+              Runtime: python3.8
+              Handler: echo
+              Script: 'print("Remediation template deployed")'
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Name: 'AutoRemediate-S3-general-purpose-buckets-should-have-s'
