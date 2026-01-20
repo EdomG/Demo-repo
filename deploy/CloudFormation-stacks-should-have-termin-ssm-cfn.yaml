@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Fallback SSM Document for CloudFormation stacks should have termination protection enabled'
+
+Resources:
+  RemediationDocument:
+    Type: 'AWS::SSM::Document'
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        description: 'Template for CloudFormation-stacks-should-have-termin'
+        parameters: {}
+        mainSteps:
+          - name: ready
+            action: 'aws:executeScript'
+            inputs:
+              Runtime: python3.8
+              Handler: echo
+              Script: 'print("Remediation template deployed")'
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Name: 'AutoRemediate-CloudFormation-stacks-should-have-termin'
