@@ -13,7 +13,7 @@ Resources:
           - name: ready
             action: 'aws:executeScript'
             inputs:
-              Runtime: python3.8
+              Runtime: python3.10
               Handler: echo
               Script: 'print("Remediation template deployed")'
       DocumentFormat: YAML
