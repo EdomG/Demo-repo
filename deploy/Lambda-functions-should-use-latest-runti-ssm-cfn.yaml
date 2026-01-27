@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Fallback SSM Document for Lambda functions should use latest runtime version'
+
+Resources:
+  RemediationDocument:
+    Type: 'AWS::SSM::Document'
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        description: 'Template for Lambda-functions-should-use-latest-runti'
+        parameters: {}
+        mainSteps:
+          - name: ready
+            action: 'aws:executeScript'
+            inputs:
+              Runtime: python3.10
+              Handler: handle
+              Script: |
+                def handle(events, context):
+                    print("Remediation template deployed")
+                    return {'status': 'success'}
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Name: 'AutoRemediate-Lambda-functions-should-use-latest-runti'
