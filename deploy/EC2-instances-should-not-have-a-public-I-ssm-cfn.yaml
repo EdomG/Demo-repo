@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Fallback SSM Document for EC2 instances should not have a public IP'
+
+Resources:
+  RemediationDocument:
+    Type: 'AWS::SSM::Document'
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        description: 'Template for EC2-instances-should-not-have-a-public-I'
+        parameters: {}
+        mainSteps:
+          - name: ready
+            action: 'aws:executeScript'
+            inputs:
+              Runtime: python3.10
+              Handler: handle
+              Script: |
+                def handle(events, context):
+                    print("Remediation template deployed")
+                    return {'status': 'success'}
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Name: 'AutoRemediate-EC2-instances-should-not-have-a-public-I'
