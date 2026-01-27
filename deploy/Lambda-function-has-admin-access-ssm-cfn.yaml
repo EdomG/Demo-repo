@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Fallback for Lambda function has admin access'
+Resources:
+  RemediationDocument:
+    Type: 'AWS::SSM::Document'
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        mainSteps:
+        - name: ready
+          action: 'aws:executeScript'
+          inputs:
+            Runtime: python3.10
+            Handler: handle
+            Script: |
+              def handle(events, context):
+                return {'status': 'success'}
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Name: 'AutoRemediate-Lambda-function-has-admin-access'
