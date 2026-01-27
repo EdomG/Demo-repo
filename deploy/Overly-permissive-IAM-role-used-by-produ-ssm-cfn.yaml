@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Fallback SSM Document for Overly permissive IAM role used by production app'
+
+Resources:
+  RemediationDocument:
+    Type: 'AWS::SSM::Document'
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        description: 'Template for Overly-permissive-IAM-role-used-by-produ'
+        parameters: {}
+        mainSteps:
+          - name: ready
+            action: 'aws:executeScript'
+            inputs:
+              Runtime: python3.10
+              Handler: handle
+              Script: |
+                def handle(events, context):
+                    print("Remediation template deployed")
+                    return {'status': 'success'}
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Name: 'AutoRemediate-Overly-permissive-IAM-role-used-by-produ'
