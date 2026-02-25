@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Auto-remediation for finding: S3 general purpose buckets should have server access logging enabled
+Resources:
+  RemediationAutomation:
+    Type: AWS::SSM::Document
+    Properties:
+      Name: AutoRemediate-S3 general purpose buckets should have s
+      DocumentType: Automation
+      Content:
+        schemaVersion: '0.3'
+        description: Remediate S3 general purpose buckets should have server access logging enabled
+        parameters:
+          FindingId:
+            type: String
+            description: Security Hub Finding ID
+        mainSteps:
+          - name: Placeholder
+            action: 'aws:noop'
+            inputs: {}
