@@ -1,0 +1,7 @@
+{
+  "Finding": "IAM role trust policy should not allow public access",
+  "Case": "3",
+  "Model": "Sonnet-3.7",
+  "Status": "SAFE_IaC_GENERATED",
+  "Timestamp": "2026-02-26T05:28:24.085822"
+}
