@@ -1,0 +1,7 @@
+{
+  "Finding": "RDS DB instances should have deletion protection enabled",
+  "Case": "3",
+  "Model": "Sonnet-3.7",
+  "Status": "SAFE_IaC_GENERATED",
+  "Timestamp": "2026-02-26T05:27:24.343003"
+}
