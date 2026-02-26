@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Auto-remediation for finding: S3 general purpose buckets should require requests to use SSL
+Resources:
+  RemediationAutomation:
+    Type: AWS::SSM::Document
+    Properties:
+      Name: AutoRemediate-S3 general purpose buckets should requir
+      DocumentType: Automation
+      Content:
+        schemaVersion: '0.3'
+        description: Remediate S3 general purpose buckets should require requests to use SSL
+        parameters:
+          FindingId:
+            type: String
+            description: Security Hub Finding ID
+        mainSteps:
+          - name: Placeholder
+            action: 'aws:noop'
+            inputs: {}
