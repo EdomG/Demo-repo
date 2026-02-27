@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SAFETY FALLBACK - EC2 instances should not have a public IP address '
+Resources:
+  FallbackDoc:
+    Type: AWS::SSM::Document
+    Properties:
+      Name: Fallback-EC2-instances-should-not-have-a-public-I
+      DocumentType: Automation
+      Content:
+        schemaVersion: '0.3'
+        mainSteps:
+        - name: SafeNoop
+          action: aws:noop
