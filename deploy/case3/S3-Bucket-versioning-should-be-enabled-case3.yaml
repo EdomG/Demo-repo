@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: '🚀 ENTERPRISE CASE 3 IaC - S3 Bucket versioning should be enabled'
+Resources:
+  RemediationDoc:
+    Type: AWS::SSM::Document
+    Properties:
+      Name: Enterprise-Case3-S3-Bucket-versioning-should-be-enabled
+      DocumentType: Automation
+      Content:
+        schemaVersion: '0.3'
+        mainSteps:
+        - name: SafeStep
+          action: aws:noop
