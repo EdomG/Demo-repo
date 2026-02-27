@@ -1,0 +1,4 @@
+{
+  "Finding": "EC2 instances should not have a public IP address associated with them",
+  "Status": "FALLBACK_SAFE"
+}
