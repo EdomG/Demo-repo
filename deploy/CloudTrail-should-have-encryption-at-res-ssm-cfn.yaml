@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Fallback for CloudTrail should have encryption at-rest enable'
+Resources:
+  RemediationDocument:
+    Type: 'AWS::SSM::Document'
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        mainSteps:
+        - name: ready
+          action: 'aws:noop'
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Name: 'AutoRemediate-CloudTrail-should-have-encryption-at-res'
