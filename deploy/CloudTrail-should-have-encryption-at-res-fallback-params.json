@@ -1,0 +1,4 @@
+{
+  "Finding": "CloudTrail should have encryption at-rest enabled",
+  "Status": "FALLBACK_SAFE"
+}
