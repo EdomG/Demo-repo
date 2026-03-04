@@ -1,4 +1,0 @@
-{
-  "Finding": "S3 bucket policy should require requests to use SSL",
-  "Status": "FALLBACK_SAFE"
-}
