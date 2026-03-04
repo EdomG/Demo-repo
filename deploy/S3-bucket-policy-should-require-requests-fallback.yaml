@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'SAFETY FALLBACK - S3 bucket policy should require requests to use SS'
+Resources:
+  FallbackDoc:
+    Type: AWS::SSM::Document
+    Properties:
+      Name: Fallback-S3-bucket-policy-should-require-requests
+      DocumentType: Automation
+      Content:
+        schemaVersion: '0.3'
+        mainSteps:
+        - name: SafeNoop
+          action: aws:noop
