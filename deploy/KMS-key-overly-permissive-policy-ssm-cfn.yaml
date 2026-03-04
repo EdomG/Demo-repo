@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Fallback for KMS key overly permissive policy'
+Resources:
+  RemediationDocument:
+    Type: 'AWS::SSM::Document'
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        mainSteps:
+        - name: ready
+          action: 'aws:noop'
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Name: 'AutoRemediate-KMS-key-overly-permissive-policy'
