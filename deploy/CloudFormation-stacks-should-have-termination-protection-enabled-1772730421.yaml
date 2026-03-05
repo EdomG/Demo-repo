@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  AISSMDoc:
+    Type: AWS::SSM::Document
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        mainSteps:
+        - name: fixIssue
+        action: aws:executeAwsApi
+        inputs:
+        Service: cloudformation
+        Api: setTerminationProtection
+        Parameters:
+        StackName: "{{StackName}}"
+        DBInstanceIdentifier: "{{DBInstanceIdentifier}}"
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Tags:
+        - Key: Case
+          Value: '3-AI'
+        - Key: Finding
+          Value: 'CloudFormation stacks should have termination protection enabled'
