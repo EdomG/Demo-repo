@@ -1,6 +1,0 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Description: Auto-remediation for: S3 bucket policy should require requests to use SSL
-Parameters:
-  TargetResource:
-    Type: String
-Resources: []
