@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  AISSMDoc:
+    Type: AWS::SSM::Document
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        mainSteps:
+mainSteps:
+  - name: setTerminationProtection
+    action: aws:executeAwsApi
+    inputs:
+      Service: cloudformation
+      Api: SetStackTerminationProtection
+      Parameters:
+        EnableTerminationProtection: true
+        StackName: "{{ StackName }}"
+
+  - name: modifyDBInstance
+    action: aws:executeAwsApi
+    inputs:
+      Service: rds
+      Api: ModifyDBInstance
+      Parameters:
+        DBInstanceIdentifier: "{{ InstanceId }}"
+        DeletionProtection: true
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Tags:
+        - Key: Case
+          Value: '3-AI'
+        - Key: Finding
+          Value: 'CloudFormation stacks should have termination protection enabled'
