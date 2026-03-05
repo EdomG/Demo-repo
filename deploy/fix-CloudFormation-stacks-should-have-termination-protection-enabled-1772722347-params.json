@@ -1,5 +1,0 @@
-{
-  "Finding": "CloudFormation stacks should have termination protection enabled",
-  "TargetResource": "{{ .Parameters.TargetResource }}",
-  "Case": "3-AI-Dynamic"
-}

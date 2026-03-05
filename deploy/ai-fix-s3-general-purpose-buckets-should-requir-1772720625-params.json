@@ -1,5 +1,0 @@
-{
-  "Finding": "S3 general purpose buckets should require requests to use SSL",
-  "TargetResource": "{{ .Parameters.TargetResource }}",
-  "Case": "3-AI-Dynamic"
-}
