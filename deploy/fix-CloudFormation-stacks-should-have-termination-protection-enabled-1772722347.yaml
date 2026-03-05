@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  AISSMDoc:
+    Type: AWS::SSM::Document
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        mainSteps:
+        - name: enableTerminationProtection
+            action: aws:executeAwsApi
+            inputs:
+              Service: cloudformation
+              Api: UpdateTerminationProtection
+              Parameters:
+                EnableTerminationProtection: true
+                StackName: "{{ StackName }}"
+          - name: updatePublicAccessBlock
+            action: aws:executeAwsApi
+            inputs:
+              Service: s3
+              Api: PutPublicAccessBlock
+              Parameters:
+                Bucket: "{{ BucketName }}"
+                PublicAccessBlockConfiguration:
+                  BlockPublicAcls: true
+                  BlockPublicPolicy: true
+                  IgnorePublicAcls: true
+                  RestrictPublicBuckets: true
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Tags:
+        - Key: Case
+          Value: '3-AI'
+        - Key: Finding
+          Value: 'CloudFormation stacks should have termination protection enabled'
