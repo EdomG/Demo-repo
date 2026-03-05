@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  SafeRemediationDocument:
+    Type: 'AWS::SSM::Document'
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        description: 'CASE 3 SAFE Template - KMS-key-overly-permissive-policy'
+        mainSteps:
+          - name: safeReady
+            action: 'aws:executeScript'
+            inputs:
+              Runtime: python3.10
+              Script: |
+                print("🚀 CASE 3 SAFE remediation template deployed")
+      DocumentFormat: YAML
+      DocumentType: Automation
