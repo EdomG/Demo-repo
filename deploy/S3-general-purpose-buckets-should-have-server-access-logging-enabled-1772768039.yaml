@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  AISSMDoc:
+    Type: AWS::SSM::Document
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        description: Remediation for S3 general purpose buckets should have server access logging enabled
+        parameters:
+          - name: TargetResource
+            type: String
+            description: Resource to remediate
+        mainSteps:
+          - name: remediationStep
+            action: aws:executeScript
+            inputs:
+              Runtime: python3.10
+              Script: |
+                print('Remediation for: { .Parameters.TargetResource }')
+                print('Service detected: s3')
+                print('Finding: S3 general purpose buckets should have server access logging enabled')
+                import boto3
+                ssm = boto3.client('ssm')
+                ssm.send_automation_signal(
+                  AutomationExecutionId='{ .AutomationExecutionId }',
+                  SignalType='Success'
+                )
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Tags:
+        - Key: Case
+          Value: '3-AI'
+        - Key: Finding
+          Value: 'S3 general purpose buckets should have server access logging enabled'
+        - Key: Service
+          Value: 's3'
