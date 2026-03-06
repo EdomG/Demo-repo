@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  AISSMDoc:
+    Type: AWS::SSM::Document
+    Properties:
+      Content:
+        schemaVersion: '0.3'
+        description: Require SSL for all requests to an S3 bucket (S3.6 remediation)
+        parameters:
+          BucketName:
+            type: String
+            description: Name of the S3 bucket
+        mainSteps:
+        - name: enforceSSLOnly
+          action: aws:executeAwsApi
+          inputs:
+            Service: s3
+            Api: PutBucketPolicy
+            Parameters:
+              Bucket: '{{ .Parameters.BucketName }}'
+              Policy: '{"Version":"2012-10-17","Statement":[{"Sid":"AllowSSLRequestsOnly","Effect":"Deny","Principal":"*","Action":"s3:*","Resource":["arn:aws:s3:::{{
+                .Parameters.BucketName }}","arn:aws:s3:::{{ .Parameters.BucketName
+                }}/*"],"Condition":{"Bool":{"aws:SecureTransport":"false"}}}]}'
+      DocumentFormat: YAML
+      DocumentType: Automation
+      Tags:
+      - Key: Case
+        Value: 3-AI
+      - Key: Finding
+        Value: S3 general purpose buckets should block public access
