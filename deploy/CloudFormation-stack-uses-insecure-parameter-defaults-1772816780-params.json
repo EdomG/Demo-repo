@@ -1,6 +1,0 @@
-{
-  "Finding": "CloudFormation stack uses insecure parameter defaults",
-  "TargetResource": "target-stack-name",
-  "Case": "3-AI-Dynamic",
-  "StackName": "cloudformation-stack-uses-insecure-parameter-defaults-1772816780"
-}

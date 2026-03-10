@@ -1,6 +1,0 @@
-{
-  "Finding": "S3 general purpose buckets should block public access",
-  "TargetResource": "target-stack-name",
-  "Case": "3-AI-Dynamic",
-  "StackName": "s3-general-purpose-buckets-should-block-public-access-1772807187"
-}
