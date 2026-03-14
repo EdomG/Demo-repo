@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  AISSMDoc:
+    Type: AWS::SSM::Document
+    Properties:
+      DocumentType: Automation
+      Content:
+        schemaVersion: "0.3"
+        description: Remediate CloudFormation stack termination protection
+        parameters:
+          StackName:
+            type: String
+            description: Name of the CloudFormation stack
+        mainSteps:
+          - name: EnableTerminationProtection
+            action: aws:executeCloudFormation
+            inputs:
+              StackName: '{{ StackName }}'
+              ActionType: Update
+              Capabilities:
+                - CAPABILITY_NAMED_IAM
+              Parameters:
+                - ParameterKey: EnableTerminationProtection
+                  ParameterValue: 'true'
