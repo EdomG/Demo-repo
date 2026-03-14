@@ -1,6 +1,0 @@
-{
-  "Finding": "CloudFormation stacks should have termination protection enabled",
-  "TargetResource": "target-resource-placeholder",
-  "Case": "3-AI-Dynamic",
-  "StackName": "cloudformation-stacks-should-have-termination-protection-enabled-1773516097"
-}
