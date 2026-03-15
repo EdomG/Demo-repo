@@ -1,6 +1,0 @@
-{
-  "Finding": "EC2 instance missing required termination protection",
-  "TargetResource": "target-resource-placeholder",
-  "Case": "3-AI-Dynamic",
-  "StackName": "ec2-instance-missing-required-termination-protection-1773601434"
-}
