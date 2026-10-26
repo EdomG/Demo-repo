@@ -1,5 +1,7 @@
-cdk.out
-*__pycache__*
-.DS_Store
-.gitleaksignore
-.git*
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+.env
+*.pem
+crash.log
