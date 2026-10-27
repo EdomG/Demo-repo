@@ -5,9 +5,14 @@ variable "project_name" {
 }
 
 variable "environment" {
-  description = "Target environment label. Exercise: add an allowed-values check."
+  description = "Target environment label. Allowed values: dev, test, prod."
   type        = string
   default     = "dev"
+
+  validation {
+    condition     = contains(["dev", "test", "prod"], var.environment)
+    error_message = "environment must be one of: dev, test, prod."
+  }
 }
 
 variable "owner" {
